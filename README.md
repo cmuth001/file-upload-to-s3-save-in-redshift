@@ -61,7 +61,7 @@
     
     ### Click **Permissions**
     
-    * **Bucket Policy**  as shown in the figure below. 
+    **Bucket Policy**  as shown in the figure below. 
      
      Copy the below Json into Bucket Policy.
      
@@ -98,7 +98,7 @@
     
       
     
-    * **CORS Configuration**  as shown in the figure below.
+    **CORS Configuration**  as shown in the figure below.
     
     Copy the below Json into CORS Configuration.
     
