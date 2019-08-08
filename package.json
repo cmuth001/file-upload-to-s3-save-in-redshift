@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/cmuth001/file-upload-to-s3-save-in-redshift/issues"
   },
-  "homepage": "https://github.com/cmuth001/file-upload-to-s3-save-in-redshift#readme"
+  "homepage": "https://github.com/cmuth001/file-upload-to-s3-save-in-redshift#readme",
+  "dependencies": {
+    "aws-sdk": "^2.505.0"
+  }
 }
