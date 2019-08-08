@@ -7,7 +7,7 @@
     <p align="center">
         <img
           alt="AWS-S3 Service"
-          src="1.png"
+          src="images/1.png"
           width="400"
         />
     </p>
@@ -16,35 +16,35 @@
     <p align="center">
         <img
           alt="Create Bucket"
-          src="2.png"
+          src="images/2.png"
           width="400"
         />
     </p>
     <p align="center">
         <img
           alt="Bucket Name"
-          src="3.png"
+          src="images/3.png"
           width="400"
         />
     </p>
     <p align="center">
         <img
           alt="Configure Options"
-          src="4.png"
+          src="images/4.png"
           width="400"
         />
     </p>
     <p align="center">
         <img
           alt="Bucket Permissions"
-          src="5.png"
+          src="images/5.png"
           width="400"
         />
     </p>
     <p align="center">
         <img
           alt="Review Bucket settings"
-          src="6.png"
+          src="images/6.png"
           width="400"
         />
     </p>
@@ -54,7 +54,7 @@
     <p align="center">
         <img
           alt="Inside Created Bucket"
-          src="7.png"
+          src="images/7.png"
           width="400"
         />
     </p>
@@ -91,7 +91,7 @@
       <p align="center">
           <img
             alt="Permissions"
-            src="8.png"
+            src="images/8.png"
             width="400"
           />
       </p>
@@ -119,7 +119,7 @@
       <p align="center">
           <img
             alt="CORS Configuration"
-            src="9.png"
+            src="images/9.png"
             width="400"
           />
       </p>
