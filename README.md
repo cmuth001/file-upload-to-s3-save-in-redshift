@@ -123,3 +123,164 @@
             width="800"
           />
       </p>
+   
+## Setting up AWS-S3 Bucket
+
+1. Now click Services then go to **IAM** services.
+
+  <p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/iam-1.png"
+        width="800"
+    />
+  </p>
+  
+2. Now on the left side click **Users**
+
+   <p align="center">
+        <img
+        alt="CORS Configuration"
+        src="images/iam-2.png"
+        width="800"
+    />
+  </p>
+  
+3. Now click **Add user**  and follow the below steps to create a user.
+
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-2.png"
+            width="800"
+        />
+    </p>
+
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-3.png"
+            width="800"
+        />
+    </p>
+    
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-4.png"
+            width="800"
+        />
+    </p>
+    
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-5.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-6.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-7.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-8.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-9.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-10.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-11.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-12.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-13.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-14.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-15.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-16.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-17.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-18.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-19.png"
+            width="800"
+        />
+    </p>
+    <p align="center">
+        <img
+            alt="CORS Configuration"
+            src="images/iam-20.png"
+            width="800"
+        />
+    </p>
