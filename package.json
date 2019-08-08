@@ -1,0 +1,22 @@
+{
+  "name": "file-upload-to-s3",
+  "version": "1.0.0",
+  "description": "A simple application to upload a csv file to  AWS s3 and save in Apachie Redshift Cluster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmuth001/file-upload-to-s3-save-in-redshift.git"
+  },
+  "keywords": [
+    "Node.js"
+  ],
+  "author": "Chandrasekhar Reddy Muthyala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmuth001/file-upload-to-s3-save-in-redshift/issues"
+  },
+  "homepage": "https://github.com/cmuth001/file-upload-to-s3-save-in-redshift#readme"
+}
