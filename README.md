@@ -49,7 +49,7 @@
         />
     </p>
     
-    Select the created bucket in the bucket list.
+3. Select the created bucket in the bucket list.
     
     <p align="center">
         <img
@@ -59,7 +59,7 @@
         />
     </p>
     
-    ### Click **Permissions**
+4. Click **Permissions**
     
     **Bucket Policy**  as shown in the figure below. 
      
