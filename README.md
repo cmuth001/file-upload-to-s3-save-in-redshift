@@ -397,3 +397,181 @@ Output:
 
 If you have followed the above steps on your system csv file is uploaded on to AWS S3 mentioned bucket above.
 
+## Lambda function: processing the CSV file and storing it onto Redshift cluster.
+Now we need to create a lambda function to trigger  when the csv file is loaded into s3 bucket. 
+### Setting up for Lambda Function
+
+Lets Create our own policy for Lambda function, please follow the screenshots to create it.
+
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-1.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-2.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-3.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-4.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-5.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-6.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-7.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-8.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-9.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-10.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-11.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-12.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-13.png"
+        width="800"/>
+</p>
+
+Now create a IAM Role and attach a created new policy and follow below screenshots to creat it.
+
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-1.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-2.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-3.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-4.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-5.png"
+        width="800"/>
+</p><p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-6.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-7.png"
+        width="800"/>
+</p>
+
+Now lets start creating a Lambda function and its trigger settings. Please follow below screenshots.
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-1.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-2.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-3.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-4.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-5.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-6.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-7.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-8.png"
+        width="800"/>
+</p>
