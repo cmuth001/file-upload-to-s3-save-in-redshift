@@ -301,13 +301,20 @@ I will split this tutorial into three sections:
 In the next few steps I will be explaining how to build a node.js application which will helps in uploading a local file into S3 bucket.
 
 1. Create a project directory using below command.
-    > mkdir file-upload-to-s3-save-in-redshift
+
+        > mkdir file-upload-to-s3-save-in-redshift
+    
 2. Running this command in **file-upload-to-s3-save-in-redshift**  will initialize node project.
-    > npm init
+
+        > npm init
+        
 3. Lets create a index.js which will be useful for writing a node.js code to upload csv file to S3.
-    > touch index.js
+
+        > touch index.js
+    
 4. Install dependency package called aws-sdk from node package manager(npm)
-    > npm install --save aws-sdk
+
+        > npm install --save aws-sdk
 
 First, we will import all the required packages to help for our application. 
 
