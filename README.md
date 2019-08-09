@@ -575,3 +575,97 @@ Now lets start creating a Lambda function and its trigger settings. Please follo
         src="images/lambda-8.png"
         width="800"/>
 </p>
+### Create a redshift cluster
+
+### Lambda function implementation
+
+Import required libraries  
+
+```python
+import boto3    #used aws library to create s3 instance
+import pg8000   #used for connecting redshift cluster
+```
+When a file is uploaded to s3 bucket this **lambda_handler(event, context)** is triggered. Explained the code through in line comments
+using PEP8 documentation style.
+```python
+import json
+import boto3
+import pg8000
+def lambda_handler(event, context):
+    
+    # TODO implement
+    # Extracting the bucket name and file name from event paramater
+    bucket_name = event['Records'][0]['s3']['bucket']['name']
+    file_name = event['Records'][0]['s3']['object']['key']
+    
+    # Contstruct a  csv URL which helps to copy to redshift
+    path = "s3://"+bucket_name+"/"+file_name
+    print("url: ", path)
+    
+    # Use redshift cluster configurations
+    HOST='redshift-cluster-1.cntecmgvwt8l.us-west-2.redshift.amazonaws.com'
+    DB_NAME='test'
+    DB_USER='awsuser'
+    DB_PASSWORD='Passw0rd'
+    DB_PORT=5439
+   
+   # this is a connection part of redshift cluster and crate conn and cur object.
+    try:
+        conn = pg8000.connect(database=DB_NAME, host=HOST, port=DB_PORT, user=DB_USER, password=DB_PASSWORD, ssl=True)
+        cur = conn.cursor()
+    except Exception as err:
+        print(err)
+        
+    # Drop a table in redshift cluster
+    try:
+        cur.execute("DROP TABLE IF EXISTS address")
+    except Exception as err:
+        print(err)
+    conn.commit()
+    
+    # Create a table structure in redshift cluster
+    try:
+        cur.execute('''CREATE TABLE address(id INT IDENTITY(1,1),
+                                    address TEXT,
+                                    city TEXT,
+                                    state TEXT,
+                                    zip TEXT)''')
+    except Exception as err:
+        print(err)
+    conn.commit()
+    
+    # This below command is used to copy data from specified s3 location to the table created in the redshift.
+    qry = """
+        copy address from 's3://{}/{}'
+        credentials 
+        'aws_access_key_id={};aws_secret_access_key={}'
+         csv;
+    """.format(bucket_name, file_name, <aws_access_key_id>, <aws_secret_access_key>)
+    try:
+        cur.execute(qry)
+        print("Copy Command executed successfully")
+    
+    except Exception as err:
+        print(err)
+    conn.commit()   
+    
+    # Above will copy all the values from csv to the table, this below query helps to remove duplicates from the table.
+    delete_sql = '''delete from 
+                    address
+                    where id not in (select min(id) from address group by address,city,state,zip)'''
+
+    try:
+        cur.execute(delete_sql)
+    except Exception as err:
+        print(err)
+    conn.commit()
+    conn.close()
+    
+    return {
+        'statusCode': 200,
+        'body': json.dumps('successfully worked')
+    }
+
+```
+
+
