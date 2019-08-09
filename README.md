@@ -1,7 +1,7 @@
 # file-upload-to-s3-save-in-redshift
 
 
-In this tutorial I will explain how to upload a CSV file into S3 bucket, trigger lambda function extract the CSV file from S3 and copy all the unique values in Apache Redshift cluster.
+In this tutorial I will explain how to upload a CSV file into S3 bucket, trigger lambda function  which extract the CSV file from S3 and copy all the unique values in Apache Redshift cluster.
 
 I will split this tutorial into three sections:
 
