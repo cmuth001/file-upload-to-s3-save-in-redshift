@@ -668,4 +668,7 @@ def lambda_handler(event, context):
 
 ```
 
+# References
 
+* [https://fivetran.com/blog/data-migration-from-redshift](https://fivetran.com/blog/data-migration-from-redshift)
+* [https://medium.com/@korniichuk/lambda-with-pandas-fd81aa2ff25e](https://medium.com/@korniichuk/lambda-with-pandas-fd81aa2ff25e)
