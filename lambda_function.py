@@ -40,7 +40,7 @@ def lambda_handler(event, context):
         credentials 
         'aws_access_key_id={};aws_secret_access_key={}'
          csv;
-    """.format(bucket_name, file_name, 'AKIAQKMYOTJ7KAY754KV', "nDT7JHaHp2uXQ+KL76B6zRVxCVEDV1wDxNxvq02K")
+    """.format(bucket_name, file_name, <aws_access_key_id>, <aws_secret_access_key>)
     try:
         cur.execute(qry)
         print("Copy Command executed successfully")
