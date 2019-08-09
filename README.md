@@ -634,7 +634,7 @@ def lambda_handler(event, context):
         print(err)
     conn.commit()
     
-    # This below command is used to copy data from specified s3 location to the table created in the redshift.
+    # This below query is used to copy data from specified s3 location to the table created in the redshift.
     qry = """
         copy address from 's3://{}/{}'
         credentials 
@@ -649,7 +649,7 @@ def lambda_handler(event, context):
         print(err)
     conn.commit()   
     
-    # Above will copy all the values from csv to the table, this below query helps to remove duplicates from the table.
+    # Above will copy all the values from csv to the table, below query helps to remove duplicates from the table.
     delete_sql = '''delete from 
                     address
                     where id not in (select min(id) from address group by address,city,state,zip)'''
