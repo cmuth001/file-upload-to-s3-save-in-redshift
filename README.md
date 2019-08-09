@@ -1,6 +1,16 @@
 # file-upload-to-s3-save-in-redshift
 
-## Setting up AWS-S3 Bucket
+
+In this tutorial I will explain how to upload a CSV file into S3 bucket, trigger lambda function extract the CSV file from S3 and copy all the unique values in Apache Redshift cluster.
+
+I will split this tutorial into three sections:
+
+* Setting up permissions for S3 bucket.
+* Uploading a CSV file into AWS S3 bucket using Node.js.
+* Lambda function: processing the CSV file and storing it onto Redshift cluster.
+
+# Setting up permissions for S3 bucket
+### Setting up AWS-S3 Bucket
 
 1. Login to [AWS console](https://aws.amazon.com). Click Services and select **S3** .
 
@@ -124,7 +134,7 @@
           />
       </p>
    
-## Setting up AWS-S3 Bucket
+### Setting up AWS-S3 Bucket
 
 1. Now click Services then go to **IAM** services.
 
@@ -284,3 +294,284 @@
             width="800"
         />
     </p>
+## Uploading a CSV file into AWS S3 bucket using Node.js:
+
+### Installing dependency
+    > npm install aws-sdk --save
+In the next few steps I will be explaining how to build a node.js application which will helps in uploading a local file into S3 bucket.
+
+1. Create a project directory using below command.
+
+        > mkdir file-upload-to-s3-save-in-redshift
+    
+2. Running this command in **file-upload-to-s3-save-in-redshift**  will initialize node project.
+
+        > npm init
+        
+3. Lets create a index.js which will be useful for writing a node.js code to upload csv file to S3.
+
+        > touch index.js
+    
+4. Install dependency package called aws-sdk from node package manager(npm)
+
+        > npm install --save aws-sdk
+
+First, we will import all the required packages to help for our application. 
+
+```js
+const fs = require('fs');
+const AWS = require('aws-sdk');
+```
+
+Now we need to create a s3 instance to use AWS S3 services.
+
+```js
+    const BUCKET_NAME = <bucket_name>;
+    const IAM_USER_KEY =’’;
+    const IAM_USER_SECRET = '';
+    const s3 = new AWS.S3({
+       accessKeyId: IAM_USER_KEY,
+       secretAccessKey: IAM_USER_SECRET
+    });
+```
+After creating s3 instance, now we should decide which bucket we wanted to upload into in AWS .
+
+Using fileStream library from node.js we will read the local csv file in a “utf-8” format and upload into s3 bucket. Please see the below code for full understanding.
+
+```js
+fs.readFile(fileName,"utf8", (err, data) => {
+   //   console.log(data)
+    if (err) throw err;
+    const params = {
+        Bucket: BUCKET_NAME,
+        Key: fileName,
+        Body: data,
+    };
+    s3.upload(params, function(s3Err, data) {
+        if (s3Err) throw s3Err
+        console.log(`CSV file is uploaded successfully at ${data.Location}`)
+    });
+ });
+```
+    
+Final your index file should be look like below.
+
+```js
+const fs = require('fs');
+const AWS = require('aws-sdk');
+
+const BUCKET_NAME = '';
+const IAM_USER_KEY = '';
+const IAM_USER_SECRET = '';
+const s3 = new AWS.S3({
+    accessKeyId: IAM_USER_KEY,
+    secretAccessKey:IAM_USER_SECRET,
+});
+
+const fileName = 'address.csv';
+
+  fs.readFile(fileName,"utf8", (err, data) => {
+    //   console.log(data)
+     if (err) throw err;
+     const params = {
+         Bucket: BUCKET_NAME,
+         Key: fileName, 
+         Body: data,
+     };
+     s3.upload(params, function(s3Err, data) {
+         if (s3Err) throw s3Err
+         console.log(`CSV file is uploaded successfully at ${data.Location}`)
+     });
+  });
+```
+
+Finally we finished writing code for uploading a csv file into s3 bucket.
+
+Run the below command to submit your file into AWS s3 bucket. Please check the bucket permission in aws if you face any errors related to access denied(403).
+
+    > node index.js
+
+Output: 
+
+    > CSV file is uploaded successfully at https://<bucket_name>.s3.amazonaws.com/address.csv
+
+If you have followed the above steps on your system csv file is uploaded on to AWS S3 mentioned bucket above.
+
+## Lambda function: processing the CSV file and storing it onto Redshift cluster.
+Now we need to create a lambda function to trigger  when the csv file is loaded into s3 bucket. 
+### Setting up for Lambda Function
+
+Lets Create our own policy for Lambda function, please follow the screenshots to create it.
+
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-1.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-2.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-3.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-4.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-5.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-6.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-7.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-8.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-9.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-10.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-11.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-12.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/policy-13.png"
+        width="800"/>
+</p>
+
+Now create a IAM Role and attach a created new policy and follow below screenshots to creat it.
+
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-1.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-2.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-3.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-4.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-5.png"
+        width="800"/>
+</p><p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-6.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/role-7.png"
+        width="800"/>
+</p>
+
+Now lets start creating a Lambda function and its trigger settings. Please follow below screenshots.
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-1.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-2.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-3.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-4.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-5.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-6.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-7.png"
+        width="800"/>
+</p>
+<p align="center">
+    <img
+        alt="CORS Configuration"
+        src="images/lambda-8.png"
+        width="800"/>
+</p>
