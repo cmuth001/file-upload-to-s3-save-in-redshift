@@ -5,11 +5,11 @@ In this tutorial I will explain how to upload a CSV file into S3 bucket, trigger
 
 I will split this tutorial into three sections:
 
-* Setting up permissions for S3 bucket  and trigger functions.
+* Setting up permissions for S3 bucket.
 * Uploading a CSV file into AWS S3 bucket using Node.js.
 * Lambda function: processing the CSV file and storing it onto Redshift cluster.
 
-# Setting up permissions for S3 bucket  and trigger functions.
+# Setting up permissions for S3 bucket
 ### Setting up AWS-S3 Bucket
 
 1. Login to [AWS console](https://aws.amazon.com). Click Services and select **S3** .
@@ -308,4 +308,80 @@ In the next few steps I will be explaining how to build a node.js application wh
     > touch index.js
 4. Install dependency package called aws-sdk from node package manager(npm)
     > npm install --save aws-sdk
+
+First, we will import all the required packages to help for our application.
+    
+    ```js
+    const fs = require('fs');
+    const AWS = require('aws-sdk');
+    ```
+Now we need to create a s3 instance to use AWS S3 services.
+    ```js
+        const BUCKET_NAME = <bucket_name>;
+        const IAM_USER_KEY =’’;
+        const IAM_USER_SECRET = '';
+        const s3 = new AWS.S3({
+           accessKeyId: IAM_USER_KEY,
+           secretAccessKey: IAM_USER_SECRET
+        });
+    ```
+After creating s3 instance, now we should decide which bucket we wanted to upload into in AWS .
+
+Using fileStream library from node.js we will read the local csv file in a “utf-8” format and upload into s3 bucket. Please see the below code for full understanding.
+    ```js
+    fs.readFile(fileName,"utf8", (err, data) => {
+       //   console.log(data)
+        if (err) throw err;
+        const params = {
+            Bucket: BUCKET_NAME,
+            Key: fileName,
+            Body: data,
+        };
+        s3.upload(params, function(s3Err, data) {
+            if (s3Err) throw s3Err
+            console.log(`CSV file is uploaded successfully at ${data.Location}`)
+        });
+     });
+    ```
+Final your index file should be look like below.
+```js
+const fs = require('fs');
+const AWS = require('aws-sdk');
+
+const BUCKET_NAME = '';
+const IAM_USER_KEY = '';
+const IAM_USER_SECRET = '';
+const s3 = new AWS.S3({
+    accessKeyId: IAM_USER_KEY,
+    secretAccessKey:IAM_USER_SECRET,
+});
+
+const fileName = 'address.csv';
+
+  fs.readFile(fileName,"utf8", (err, data) => {
+    //   console.log(data)
+     if (err) throw err;
+     const params = {
+         Bucket: BUCKET_NAME,
+         Key: fileName, 
+         Body: data,
+     };
+     s3.upload(params, function(s3Err, data) {
+         if (s3Err) throw s3Err
+         console.log(`CSV file is uploaded successfully at ${data.Location}`)
+     });
+  });
+```
+
+Finally we finished writing code for uploading a csv file into s3 bucket.
+
+Run the below command to submit your file into AWS s3 bucket. Please check the bucket permission in aws if you face any errors related to access denied(403).
+
+    > node index.js
+
+Output: 
+
+    > CSV file is uploaded successfully at https://<bucket_name>.s3.amazonaws.com/address.csv
+
+If you have followed the above steps on your system csv file is uploaded on to AWS S3 mentioned bucket above.
 
