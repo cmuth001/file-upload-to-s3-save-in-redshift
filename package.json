@@ -20,6 +20,6 @@
   },
   "homepage": "https://github.com/cmuth001/file-upload-to-s3-save-in-redshift#readme",
   "dependencies": {
-    "aws-sdk": "^2.505.0"
+    "aws-sdk": "^2.814.0"
   }
 }
